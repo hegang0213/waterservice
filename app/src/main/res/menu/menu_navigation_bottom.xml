@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@color/colorPrimary"
+    app:bbn_badgeColor="#FFFF0000"
+    app:bbn_itemColorActive="@android:color/black"
+    app:bbn_itemColorDisabled="#33000000"
+    app:bbn_itemColorInactive="@android:color/black"
+    app:bbn_rippleColor="#33000000">
+    <item
+        android:id="@+id/bbn_item1"
+        android:icon="@android:drawable/ic_input_add"
+        android:title="Home" />
+    <item
+        android:id="@+id/bbn_item2"
+        android:icon="@android:drawable/ic_input_delete"
+        android:title="Query" />
+    <item
+        android:id="@+id/bbn_item3"
+        android:icon="@android:drawable/ic_input_get"
+        android:title="Payment" />
+    <item
+        android:id="@+id/action4"
+        android:icon="@android:drawable/ic_lock_lock"
+        android:title="Notification" />
+</menu>
