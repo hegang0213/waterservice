@@ -1,6 +1,19 @@
 <resources>
     <string name="app_name">供水服务</string>
+    <string-array name="page_titles">
+        <item>首页</item>
+        <item>用水</item>
+        <item>报修</item>
+        <item>公众信息</item>
+    </string-array>
+
+    <!-- home fragment -->
+    <string name="customer_no">编号</string>
+    <string name="customer_name">姓名</string>
+    <string name="customer_phone">电话</string>
+    <string name="customer_address">地址</string>
 
     <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="content_description"></string>
+    <string name="value_none">-</string>
 </resources>

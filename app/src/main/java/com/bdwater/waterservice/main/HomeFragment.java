@@ -10,7 +10,7 @@ import android.view.ViewGroup;
 import com.bdwater.waterservice.R;
 
 /**
- * A simple {@link Fragment} subclass.
+ *
  */
 public class HomeFragment extends Fragment {
 

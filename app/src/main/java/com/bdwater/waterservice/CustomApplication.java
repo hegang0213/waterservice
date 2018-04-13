@@ -7,5 +7,13 @@ import android.app.Application;
  */
 
 public class CustomApplication extends Application {
+    private static MainActivity mainActivity = null;
 
+    public static void setMainActivity(MainActivity activity) {
+        CustomApplication.mainActivity = activity;
+    }
+
+    public static MainActivity getMainActivity() {
+        return mainActivity;
+    }
 }

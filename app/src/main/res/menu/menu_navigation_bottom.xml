@@ -1,26 +1,29 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:background="@color/colorPrimary"
     app:bbn_badgeColor="#FFFF0000"
-    app:bbn_itemColorActive="@android:color/black"
+    app:bbn_rippleColor="#33000000"
+    app:bbn_itemColorActive="#009100"
     app:bbn_itemColorDisabled="#33000000"
-    app:bbn_itemColorInactive="@android:color/black"
-    app:bbn_rippleColor="#33000000">
+    app:bbn_itemColorInactive="@color/normalGray"
+    app:bbn_alwaysShowLabels="true"
+    >
     <item
-        android:id="@+id/bbn_item1"
-        android:icon="@android:drawable/ic_input_add"
+        android:id="@+id/bbn_home"
+        android:icon="@drawable/ic_telegram_plane"
         android:title="Home" />
     <item
-        android:id="@+id/bbn_item2"
-        android:icon="@android:drawable/ic_input_delete"
+        android:id="@+id/bbn_query"
+        android:icon="@drawable/ic_wrench"
         android:title="Query" />
     <item
-        android:id="@+id/bbn_item3"
-        android:icon="@android:drawable/ic_input_get"
+        android:id="@+id/bbn_pay"
+        android:icon="@drawable/ic_credit_card"
         android:title="Payment" />
     <item
-        android:id="@+id/action4"
-        android:icon="@android:drawable/ic_lock_lock"
+        android:id="@+id/bbn_notification"
+        android:icon="@drawable/ic_comments"
         android:title="Notification" />
 </menu>
