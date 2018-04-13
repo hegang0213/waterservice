@@ -12,17 +12,10 @@ import com.bdwater.waterservice.R;
  */
 
 public class PagerAdapter extends FragmentPagerAdapter {
-    private String[] titles;
     private Context context;
     public PagerAdapter(FragmentManager fm, Context context) {
         super(fm);
         this.context = context;
-        this.titles = context.getResources().getStringArray(R.array.page_titles);
-    }
-
-    @Override
-    public CharSequence getPageTitle(int position) {
-        return titles[position];
     }
 
     @Override

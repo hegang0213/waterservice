@@ -2,28 +2,25 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:background="@color/colorPrimary"
-    app:bbn_badgeColor="#FFFF0000"
-    app:bbn_rippleColor="#33000000"
-    app:bbn_itemColorActive="#009100"
-    app:bbn_itemColorDisabled="#33000000"
-    app:bbn_itemColorInactive="@color/normalGray"
-    app:bbn_alwaysShowLabels="true"
     >
     <item
         android:id="@+id/bbn_home"
         android:icon="@drawable/ic_telegram_plane"
-        android:title="Home" />
+        android:title="@string/menu_home" />
     <item
         android:id="@+id/bbn_query"
-        android:icon="@drawable/ic_wrench"
-        android:title="Query" />
+        android:icon="@drawable/ic_th_list"
+        android:title="@string/menu_query" />
     <item
-        android:id="@+id/bbn_pay"
-        android:icon="@drawable/ic_credit_card"
-        android:title="Payment" />
+        android:id="@+id/bbn_report"
+        android:icon="@drawable/ic_wrench"
+        android:title="@string/menu_report" />
+    <item
+        android:id="@+id/bbn_site"
+        android:icon="@drawable/ic_map_marker_alt"
+        android:title="@string/menu_site" />
     <item
         android:id="@+id/bbn_notification"
-        android:icon="@drawable/ic_comments"
-        android:title="Notification" />
+        android:icon="@drawable/ic_newspaper"
+        android:title="@string/menu_notification" />
 </menu>
