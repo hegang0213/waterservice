@@ -9,12 +9,15 @@
     <android.support.design.widget.AppBarLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:fitsSystemWindows="true"
         app:elevation="0dp">
         <android.support.v7.widget.Toolbar
             android:id="@+id/toolbar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:theme="@style/ToolbarTheme"
             app:titleTextAppearance="@style/Toolbar.TitleText"
+            app:popupTheme="@style/ToolbarPopupTheme"
             app:title="@string/app_name">
 
         </android.support.v7.widget.Toolbar>
