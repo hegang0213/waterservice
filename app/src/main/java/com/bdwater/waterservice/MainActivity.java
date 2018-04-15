@@ -9,7 +9,6 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 
 import com.aurelhubert.ahbottomnavigation.AHBottomNavigation;
-import com.aurelhubert.ahbottomnavigation.AHBottomNavigationAdapter;
 import com.bdwater.waterservice.main.BottomNavigationCollection;
 import com.bdwater.waterservice.main.MainPagerAdapter;
 
@@ -33,11 +32,34 @@ public class MainActivity extends BaseActivity {
 
         adapter = new MainPagerAdapter(getSupportFragmentManager(), this);
         viewPager.setAdapter(adapter);
+        viewPager.addOnPageChangeListener(pageChangeListener);
 
         BottomNavigationCollection collection = new BottomNavigationCollection(this);
         collection.setupWithBottomNavigation(bottomNavigation);
         bottomNavigation.setTitleState(AHBottomNavigation.TitleState.ALWAYS_SHOW);
         bottomNavigation.setTitleTextSize(18, 18);
+        bottomNavigation.setOnNavigationPositionListener(new AHBottomNavigation.OnNavigationPositionListener() {
+            @Override
+            public void onPositionChange(int y) {
+                viewPager.setCurrentItem(y);
+            }
+        });
 
     }
+    private ViewPager.OnPageChangeListener pageChangeListener = new ViewPager.OnPageChangeListener() {
+        @Override
+        public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
+
+        }
+
+        @Override
+        public void onPageSelected(int position) {
+            bottomNavigation.setCurrentItem(position);
+        }
+
+        @Override
+        public void onPageScrollStateChanged(int state) {
+
+        }
+    };
 }

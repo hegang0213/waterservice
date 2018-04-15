@@ -6,6 +6,7 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 
 import com.bdwater.waterservice.R;
+import com.bdwater.waterservice.site.SiteFragment;
 
 /**
  * Created by hegang on 18/4/13.
@@ -25,7 +26,12 @@ public class MainPagerAdapter extends FragmentPagerAdapter {
             case 0:
             case 1:
             case 2:
+                fragment = HomeFragment.newInstance();
+                break;
             case 3:
+                fragment = SiteFragment.newInstance();
+                break;
+            case 4:
                 fragment = HomeFragment.newInstance();
                 break;
         }
@@ -34,6 +40,6 @@ public class MainPagerAdapter extends FragmentPagerAdapter {
 
     @Override
     public int getCount() {
-        return 4;
+        return 5;
     }
 }
