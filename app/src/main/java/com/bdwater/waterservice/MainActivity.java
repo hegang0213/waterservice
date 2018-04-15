@@ -10,9 +10,10 @@ import butterknife.ButterKnife;
 
 import com.aurelhubert.ahbottomnavigation.AHBottomNavigation;
 import com.aurelhubert.ahbottomnavigation.AHBottomNavigationAdapter;
+import com.bdwater.waterservice.main.BottomNavigationCollection;
 import com.bdwater.waterservice.main.MainPagerAdapter;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends BaseActivity {
     @BindView(R.id.toolbar)
     Toolbar toolbar;
     @BindView(R.id.viewPager)
@@ -33,9 +34,10 @@ public class MainActivity extends AppCompatActivity {
         adapter = new MainPagerAdapter(getSupportFragmentManager(), this);
         viewPager.setAdapter(adapter);
 
-        AHBottomNavigationAdapter navigationAdapter = new AHBottomNavigationAdapter(this, R.menu.menu_navigation_bottom);
-        navigationAdapter.setupWithBottomNavigation(bottomNavigation);
+        BottomNavigationCollection collection = new BottomNavigationCollection(this);
+        collection.setupWithBottomNavigation(bottomNavigation);
         bottomNavigation.setTitleState(AHBottomNavigation.TitleState.ALWAYS_SHOW);
         bottomNavigation.setTitleTextSize(18, 18);
+
     }
 }

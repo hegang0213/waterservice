@@ -3,4 +3,11 @@
     <dimen name="toolbarTextSize">18dp</dimen>
     <dimen name="titleTextSize">18dp</dimen>
     <dimen name="textSize">14dp</dimen>
+
+    <dimen name="card_icon_size">24dp</dimen>
+    <dimen name="content_icon_size">64dp</dimen>
+    <dimen name="icon_size">16dp</dimen>
+    <dimen name="icon_size_big">32dp</dimen>
+    <dimen name="icon_size_normal">24dp</dimen>
+    <dimen name="notification_icon_size">16dp</dimen>
 </resources>
