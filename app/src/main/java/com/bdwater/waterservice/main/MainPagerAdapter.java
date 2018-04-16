@@ -6,6 +6,8 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 
 import com.bdwater.waterservice.R;
+import com.bdwater.waterservice.notification.NotificationFragment;
+import com.bdwater.waterservice.query.QueryFragment;
 import com.bdwater.waterservice.site.SiteFragment;
 
 /**
@@ -24,7 +26,11 @@ public class MainPagerAdapter extends FragmentPagerAdapter {
         Fragment fragment = null;
         switch (position) {
             case 0:
+                fragment = HomeFragment.newInstance();
+                break;
             case 1:
+                fragment = QueryFragment.newInstance();
+                break;
             case 2:
                 fragment = HomeFragment.newInstance();
                 break;
@@ -32,7 +38,7 @@ public class MainPagerAdapter extends FragmentPagerAdapter {
                 fragment = SiteFragment.newInstance();
                 break;
             case 4:
-                fragment = HomeFragment.newInstance();
+                fragment = NotificationFragment.newInstance();
                 break;
         }
         return fragment;
