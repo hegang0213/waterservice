@@ -5,7 +5,7 @@
     <string name="menu_query">用水</string>
     <string name="menu_report">报修</string>
     <string name="menu_site">网点</string>
-    <string name="menu_notification">信息</string>
+    <string name="menu_notification">公告</string>
 
     <!-- home fragment -->
     <string name="customer_no">编号</string>
@@ -16,6 +16,9 @@
     <!-- TODO: Remove or change this placeholder text -->
     <string name="content_description"></string>
     <string name="value_none">-</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="current_location">当前：</string>
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>

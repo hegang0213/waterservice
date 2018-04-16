@@ -1,7 +1,6 @@
 package com.bdwater.waterservice;
 
 import android.support.v4.view.ViewPager;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 
@@ -27,6 +26,7 @@ public class MainActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         ButterKnife.bind(this);
+        setSwipeBackEnable(false);
 
         setSupportActionBar(toolbar);
 
@@ -37,11 +37,13 @@ public class MainActivity extends BaseActivity {
         BottomNavigationCollection collection = new BottomNavigationCollection(this);
         collection.setupWithBottomNavigation(bottomNavigation);
         bottomNavigation.setTitleState(AHBottomNavigation.TitleState.ALWAYS_SHOW);
+        bottomNavigation.setAccentColor(getResources().getColor(R.color.navigationAccentColor));
         bottomNavigation.setTitleTextSize(18, 18);
-        bottomNavigation.setOnNavigationPositionListener(new AHBottomNavigation.OnNavigationPositionListener() {
+        bottomNavigation.setOnTabSelectedListener(new AHBottomNavigation.OnTabSelectedListener() {
             @Override
-            public void onPositionChange(int y) {
-                viewPager.setCurrentItem(y);
+            public boolean onTabSelected(int position, boolean wasSelected) {
+                viewPager.setCurrentItem(position);
+                return true;
             }
         });
 

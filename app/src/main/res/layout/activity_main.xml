@@ -26,11 +26,12 @@
         android:id="@+id/viewPager"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="?android:attr/actionBarSize"
         app:layout_behavior="@string/appbar_scrolling_view_behavior"/>
     <com.aurelhubert.ahbottomnavigation.AHBottomNavigation
         android:id="@+id/bottomNavigation"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="?android:attr/actionBarSize"
         android:layout_gravity="bottom"
         />
 </android.support.design.widget.CoordinatorLayout>

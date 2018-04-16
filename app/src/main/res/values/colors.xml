@@ -9,5 +9,7 @@
     <color name="colorAccent">#FF4081</color>
     <color name="textColor">#000</color>
 
+    <color name="lightGray">#A0A0A0</color>
     <color name="normalGray">#808080</color>
+    <color name="navigationAccentColor">#000</color>
 </resources>
