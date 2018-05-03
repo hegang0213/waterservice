@@ -1,12 +1,28 @@
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<com.scwang.smartrefresh.layout.SmartRefreshLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/refreshLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.bdwater.waterservice.query.QueryFragment">
-
-    <WebView
-        android:id="@+id/webView"
+    tools:context="com.bdwater.waterservice.notification.NotificationFragment">
+    <com.scwang.smartrefresh.layout.header.ClassicsHeader
         android:layout_width="match_parent"
-        android:layout_height="match_parent"></WebView>
+        android:layout_height="wrap_content"/>
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <ProgressBar
+            android:id="@+id/progressBar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            style="?android:attr/progressBarStyleHorizontal"
+            android:progress="0"
+            />
+        <WebView
+            android:id="@+id/webView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_toEndOf="@id/progressBar"></WebView>
+    </RelativeLayout>
 
-</FrameLayout>
+
+</com.scwang.smartrefresh.layout.SmartRefreshLayout>
