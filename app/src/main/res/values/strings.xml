@@ -22,5 +22,6 @@
     <string name="current_location_name">当前位置</string>
 
     <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="home_bank_payment">银行缴费</string>
+    <string name="home_other_payment">其它缴费（跳转到外部APP）</string>
 </resources>

@@ -53,7 +53,7 @@ dependencies {
     implementation 'com.mikepenz:material-design-iconic-typeface:2.2.0.4@aar'
 
 //    implementation 'com.tencent.map:tencent-map-vector-sdk:latest.release'
-    implementation files('libs/TencentLocationSdk_v6.2.5.3_r15b3b3cc_20171103_115903.jar')
-    implementation files('libs/TencentMapSDK_Raster_v_1.2.8.1.c02ec64.jar')
-    implementation files('libs/TencentMapSearch_v1.1.7.1.3e04ee1.jar')
+//    implementation files('libs/TencentLocationSdk_v6.2.5.3_r15b3b3cc_20171103_115903.jar')
+//    implementation files('libs/TencentMapSDK_Raster_v_1.2.8.1.c02ec64.jar')
+//    implementation files('libs/TencentMapSearch_v1.1.7.1.3e04ee1.jar')
 }

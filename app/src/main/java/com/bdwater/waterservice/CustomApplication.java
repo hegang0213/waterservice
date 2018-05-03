@@ -3,6 +3,8 @@ package com.bdwater.waterservice;
 import android.app.Application;
 import android.content.Context;
 
+import com.mikepenz.community_material_typeface_library.CommunityMaterial;
+import com.mikepenz.iconics.Iconics;
 import com.scwang.smartrefresh.layout.SmartRefreshLayout;
 import com.scwang.smartrefresh.layout.api.DefaultRefreshFooterCreator;
 import com.scwang.smartrefresh.layout.api.DefaultRefreshHeaderCreator;
@@ -38,7 +40,16 @@ public class CustomApplication extends Application {
             }
         });
     }
+    @Override
+    public void onCreate() {
+        super.onCreate();
 
+        //only required if you add a custom or generic font on your own
+        Iconics.init(getApplicationContext());
+
+        //register custom fonts like this (or also provide a font definition file)
+        Iconics.registerFont(new CommunityMaterial());
+    }
     public static void setMainActivity(MainActivity activity) {
         CustomApplication.mainActivity = activity;
     }

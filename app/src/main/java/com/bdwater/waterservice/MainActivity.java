@@ -12,6 +12,12 @@ import com.bdwater.waterservice.main.BottomNavigationCollection;
 import com.bdwater.waterservice.main.MainPagerAdapter;
 
 public class MainActivity extends BaseActivity {
+    public static final int PAGE_MAIN = 0;
+    public static final int PAGE_QUERY = 1;
+    public static final int PAGE_REPORT = 2;
+    public static final int PAGE_SITE = 3;
+    public static final int PAGE_NOTIFICATION = 4;
+
     @BindView(R.id.toolbar)
     Toolbar toolbar;
     @BindView(R.id.viewPager)
@@ -73,4 +79,8 @@ public class MainActivity extends BaseActivity {
 
         }
     };
+    public void changePage(int position) {
+        bottomNavigation.setCurrentItem(position);
+
+    }
 }

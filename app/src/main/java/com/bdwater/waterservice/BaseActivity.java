@@ -6,6 +6,7 @@ import android.support.v4.view.LayoutInflaterCompat;
 import android.support.v7.app.AppCompatActivity;
 
 import com.mikepenz.iconics.context.IconicsContextWrapper;
+import com.mikepenz.iconics.context.IconicsLayoutInflater;
 
 import me.imid.swipebacklayout.lib.app.SwipeBackActivity;
 
@@ -14,8 +15,11 @@ import me.imid.swipebacklayout.lib.app.SwipeBackActivity;
  */
 
 public class BaseActivity extends SwipeBackActivity {
+
     @Override
-    protected void attachBaseContext(Context newBase) {
-        super.attachBaseContext(IconicsContextWrapper.wrap(newBase));
+    protected void onCreate(Bundle savedInstanceState) {
+        LayoutInflaterCompat.setFactory(getLayoutInflater(), new IconicsLayoutInflater(getDelegate()));
+        super.onCreate(savedInstanceState);
     }
+
 }
