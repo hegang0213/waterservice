@@ -11,7 +11,9 @@
 
     <color name="locationColor">#7073ac</color>
 
-    <color name="backgroundGray">#EAEAEA</color>
+    <color name="darkRed">#cc0000</color>
+    <color name="red">#FF0000</color>
+    <color name="backgroundGray">#eaeaea</color>
     <color name="lightGray">#A0A0A0</color>
     <color name="normalGray">#808080</color>
     <color name="navigationAccentColor">#000</color>

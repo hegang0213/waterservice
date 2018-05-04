@@ -8,6 +8,7 @@ import android.support.v4.app.FragmentPagerAdapter;
 import com.bdwater.waterservice.R;
 import com.bdwater.waterservice.notification.NotificationFragment;
 import com.bdwater.waterservice.query.QueryFragment;
+import com.bdwater.waterservice.report.ReportFragment;
 import com.bdwater.waterservice.site.SiteFragment;
 
 /**
@@ -32,7 +33,7 @@ public class MainPagerAdapter extends FragmentPagerAdapter {
                 fragment = QueryFragment.newInstance();
                 break;
             case 2:
-                fragment = HomeFragment.newInstance();
+                fragment = ReportFragment.newInstance();
                 break;
             case 3:
                 fragment = SiteFragment.newInstance();

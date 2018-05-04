@@ -15,7 +15,7 @@ import okhttp3.Response;
  */
 
 public class RemoteManager {
-    private final static String baseUrl = "http://222.222.178.137/";
+    public final static String baseUrl = "http://121.18.65.232:50030/";
     private OkHttpClient client;
     private Request.Builder requestBuilder;
     public RemoteManager() {

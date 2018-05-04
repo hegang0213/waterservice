@@ -11,6 +11,8 @@ import android.webkit.WebView;
 import android.widget.ProgressBar;
 
 import com.bdwater.waterservice.R;
+import com.bdwater.waterservice.model.User;
+import com.bdwater.waterservice.remote.RemoteManager;
 import com.scwang.smartrefresh.layout.SmartRefreshLayout;
 import com.scwang.smartrefresh.layout.api.RefreshFooter;
 import com.scwang.smartrefresh.layout.api.RefreshHeader;
@@ -47,13 +49,13 @@ public class QueryFragment extends Fragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_query, container, false);
         ButterKnife.bind(this, view);
+        webView.getSettings().setJavaScriptEnabled(true);
         webView.setWebChromeClient(new WebChromeClient() {
             @Override
             public void onProgressChanged(WebView view, int newProgress) {
                 super.onProgressChanged(view, newProgress);
                 progressBar.setProgress(newProgress);
                 if(newProgress == 100) {
-                    refreshLayout.finishRefresh();
                     progressBar.setVisibility(View.GONE);
                 }
             }
@@ -62,13 +64,14 @@ public class QueryFragment extends Fragment {
             @Override
             public void onRefresh(RefreshLayout refreshLayout) {
                 reload();
+                refreshLayout.finishRefresh();
             }
         });
         this.reload();
         return view;
     }
     private void reload() {
-        this.webView.loadUrl("http://222.223.34.130:5151/");
+        this.webView.loadUrl(RemoteManager.baseUrl + "WaterSale/CustomerView/" + User.instance.customerNo);
         this.progressBar.setProgress(0);
         this.progressBar.setVisibility(View.VISIBLE);
     }

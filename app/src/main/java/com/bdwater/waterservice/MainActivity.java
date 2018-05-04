@@ -1,8 +1,11 @@
 package com.bdwater.waterservice;
 
+import android.content.Intent;
 import android.support.v4.view.ViewPager;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
+import android.view.Menu;
+import android.view.MenuItem;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -10,6 +13,7 @@ import butterknife.ButterKnife;
 import com.aurelhubert.ahbottomnavigation.AHBottomNavigation;
 import com.bdwater.waterservice.main.BottomNavigationCollection;
 import com.bdwater.waterservice.main.MainPagerAdapter;
+import com.bdwater.waterservice.pressure.PressureActivity;
 
 public class MainActivity extends BaseActivity {
     public static final int PAGE_MAIN = 0;
@@ -82,5 +86,22 @@ public class MainActivity extends BaseActivity {
     public void changePage(int position) {
         bottomNavigation.setCurrentItem(position);
 
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menu_main, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.menu_pressure:
+                Intent intent =  new Intent(MainActivity.this, PressureActivity.class);
+                startActivity(intent);
+                break;
+        }
+        return true;
     }
 }

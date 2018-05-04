@@ -7,6 +7,6 @@ package com.bdwater.waterservice.model;
 public class User {
     public boolean isLogon = false;
     public String tel = "18003328885";
-    public Integer customerNo = 30247;
+    public Integer customerNo = 30214;
     public static User instance = new User();
 }

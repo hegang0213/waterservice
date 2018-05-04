@@ -4,7 +4,7 @@
     <string name="menu_home">首页</string>
     <string name="menu_query">用水</string>
     <string name="menu_report">报修</string>
-    <string name="menu_site">网点</string>
+    <string name="menu_site">压力</string>
     <string name="menu_notification">公告</string>
 
     <!-- home fragment -->
@@ -23,5 +23,8 @@
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="home_bank_payment">银行缴费</string>
-    <string name="home_other_payment">其它缴费（跳转到外部APP）</string>
+    <string name="home_other_payment">其它缴费</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

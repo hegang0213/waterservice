@@ -2,18 +2,19 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.bdwater.waterservice">
 
-    <!--腾讯地图 sdk 要求的权限(开始)-->
-    <!--访问网络获取地图服务-->
-    <uses-permission android:name="android.permission.INTERNET"/>
-    <!--检查网络可用性-->
-    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
+    <!-- 腾讯地图 sdk 要求的权限(开始) -->
+    <!-- 访问网络获取地图服务 -->
+    <uses-permission android:name="android.permission.INTERNET" />
+    <!-- 检查网络可用性 -->
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <!-- 访问WiFi状态 -->
     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
-    <!--需要外部存储写权限用于保存地图缓存-->
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
-    <!--获取 device id 辨别设备-->
-    <uses-permission android:name="android.permission.READ_PHONE_STATE"/>
-    <!--腾讯地图 sdk 要求的权限(结束)-->
+    <!-- 需要外部存储写权限用于保存地图缓存 -->
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <!-- 获取 device id 辨别设备 -->
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+    <!-- 腾讯地图 sdk 要求的权限(结束) -->
+
 
     <!-- 腾讯定位 sdk 要求的其他权限  (开始) -->
     <!-- 通过GPS得到精确位置 -->
@@ -24,9 +25,8 @@
     <uses-permission android:name="android.permission.CHANGE_WIFI_STATE" />
     <!-- 访问网络的变化, 需要某些信息用于网络定位 -->
     <uses-permission android:name="android.permission.CHANGE_NETWORK_STATE" />
+
     <!-- 腾讯定位 sdk 要求的权限 (结束) -->
-
-
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -36,7 +36,7 @@
         android:theme="@style/AppTheme">
         <meta-data
             android:name="TencentMapSDK"
-            android:value="IUGBZ-67IKK-OIUJX-AOXIP-YSMV6-ELFL4"/>
+            android:value="IUGBZ-67IKK-OIUJX-AOXIP-YSMV6-ELFL4" />
 
         <activity android:name=".MainActivity">
             <intent-filter>
@@ -45,6 +45,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".pressure.PressureActivity"></activity>
     </application>
 
 </manifest>
