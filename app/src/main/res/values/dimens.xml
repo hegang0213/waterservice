@@ -2,7 +2,8 @@
 <resources>
     <dimen name="toolbarTextSize">18dp</dimen>
     <dimen name="titleTextSize">18dp</dimen>
-    <dimen name="textSize">14dp</dimen>
+    <dimen name="textSize">12dp</dimen>
+    <dimen name="hintTextSize">10dp</dimen>
 
     <dimen name="card_icon_size">24dp</dimen>
     <dimen name="content_icon_size">64dp</dimen>

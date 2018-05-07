@@ -34,7 +34,7 @@ public class BottomDialog extends Dialog {
         super.onCreate(savedInstanceState);
 
         setContentView(view);//这行一定要写在前面
-        setCancelable(false);//点击外部不可dismiss
+        setCancelable(true);//点击外部不可dismiss
         setCanceledOnTouchOutside(false);
         Window window = this.getWindow();
         window.setGravity(Gravity.BOTTOM);

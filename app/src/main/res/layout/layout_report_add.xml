@@ -39,17 +39,30 @@
         android:paddingRight="@dimen/dialog_paddingRight"
         android:paddingTop="@dimen/dialog_paddingTop">
 
-        <EditText
-            android:id="@+id/subjectEditText"
+        <android.support.design.widget.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="标题" />
+            app:hintTextAppearance="@style/BottomDialog.HintTextAppearance">
+            <EditText
+                android:id="@+id/subjectEditText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="标题" />
+        </android.support.design.widget.TextInputLayout>
+        <android.support.design.widget.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:hintTextAppearance="@style/BottomDialog.HintTextAppearance">
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="内容"
+                android:textAlignment="textStart"
+                android:inputType="textMultiLine"
+                android:maxLines="5" />
+        </android.support.design.widget.TextInputLayout>
 
-        <EditText
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="内容"
-            android:lines="5" />
+
     </LinearLayout>
 
     <RelativeLayout

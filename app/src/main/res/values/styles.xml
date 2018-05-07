@@ -14,6 +14,13 @@
         <item name="android:textColorTertiary">@color/textColor</item>
         <item name="actionMenuTextAppearance">@style/MenuTextStyle</item>
 
+        <item name="android:textSize">@dimen/textSize</item>
+        <item name="android:textAppearance">@style/customTextAppearance</item>
+        <item name="android:textAppearanceMedium">@style/customTextAppearance</item>
+        <item name="android:textAppearanceLarge">@style/customTextAppearance</item>
+        <item name="android:textAppearanceButton">@style/customTextAppearance</item>
+        <item name="android:textAppearanceSmall">@style/customTextAppearance</item>
+
     </style>
 
     <style name="ToolbarTheme" parent="ThemeOverlay.AppCompat.Dark.ActionBar">
@@ -31,7 +38,7 @@
     </style>
 
     <style name="Toolbar.TitleText" parent="TextAppearance.Widget.AppCompat.Toolbar.Title">
-        <item name="android:textSize">14sp</item>
+        <item name="android:textSize">@dimen/toolbarTextSize</item>
     </style>
 
     <style name="OverflowMenuStyle" parent="@style/Widget.AppCompat.PopupMenu.Overflow">
@@ -51,12 +58,30 @@
     </style>
 
     <style name="BottomDialog" >
-        <item name="android:textAppearance">@style/Toolbar.TitleText</item>
         <item name="android:windowNoTitle">true</item>
         <item name="android:backgroundDimEnabled">true</item>
+        <item name="android:textColorHint">@color/textColorHint</item>
+        <item name="android:colorControlNormal">@color/colorControlNormal</item>
+        <item name="android:colorControlActivated">@color/colorControlActivated</item>
+        <item name="android:colorControlHighlight">@color/colorControlHighlight</item>
+
+        <item name="android:textSize">@dimen/textSize</item>
+        <item name="android:textAppearance">@style/customTextAppearance</item>
+        <item name="android:textAppearanceMedium">@style/customTextAppearance</item>
+        <item name="android:textAppearanceLarge">@style/customTextAppearance</item>
+        <item name="android:textAppearanceButton">@style/customTextAppearance</item>
+        <item name="android:textAppearanceSmall">@style/customTextAppearance</item>
     </style>
     <style name="BottomDialogAnimation" parent="android:Animation">
         <item name="android:windowEnterAnimation">@anim/dialog_enter</item>
         <item name="android:windowExitAnimation">@anim/dialog_exit</item>
+    </style>
+    <style name="BottomDialog.HintTextAppearance" parent="TextAppearance.Design.Hint">
+        <item name="android:textSize">@dimen/hintTextSize</item>
+        <item name="android:textColor">@color/textColorHint</item>
+    </style>
+    <style name="customTextAppearance" parent="TextAppearance.AppCompat">
+        <item name="android:textSize">@dimen/textSize</item>
+        <item name="android:textColor">@color/textColor</item>
     </style>
 </resources>
