@@ -12,13 +12,9 @@ import android.widget.ProgressBar;
 
 import com.bdwater.waterservice.R;
 import com.bdwater.waterservice.model.User;
-import com.bdwater.waterservice.remote.RemoteManager;
+import com.bdwater.waterservice.remote.RemoteBase;
 import com.scwang.smartrefresh.layout.SmartRefreshLayout;
-import com.scwang.smartrefresh.layout.api.RefreshFooter;
-import com.scwang.smartrefresh.layout.api.RefreshHeader;
 import com.scwang.smartrefresh.layout.api.RefreshLayout;
-import com.scwang.smartrefresh.layout.constant.RefreshState;
-import com.scwang.smartrefresh.layout.listener.OnMultiPurposeListener;
 import com.scwang.smartrefresh.layout.listener.OnRefreshListener;
 
 import butterknife.BindView;
@@ -71,7 +67,7 @@ public class QueryFragment extends Fragment {
         return view;
     }
     private void reload() {
-        this.webView.loadUrl(RemoteManager.baseUrl + "WaterSale/CustomerView/" + User.instance.customerNo);
+        this.webView.loadUrl(RemoteBase.baseUrl + "WaterSale/CustomerView/" + User.instance.customerNo);
         this.progressBar.setProgress(0);
         this.progressBar.setVisibility(View.VISIBLE);
     }

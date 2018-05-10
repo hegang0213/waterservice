@@ -45,7 +45,8 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".pressure.PressureActivity"></activity>
+        <activity android:name=".pressure.PressureActivity" />
+        <activity android:name=".LoginActivity" android:theme="@style/Login.AppTheme"/>
     </application>
 
 </manifest>

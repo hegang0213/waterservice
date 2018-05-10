@@ -13,12 +13,22 @@
         android:paddingLeft="@dimen/dialog_paddingLeft"
         android:paddingRight="@dimen/dialog_paddingRight"
         android:paddingTop="@dimen/dialog_paddingTop">
+        <com.mikepenz.iconics.view.IconicsImageView
+            android:layout_width="16dp"
+            android:layout_height="16dp"
+            app:iiv_icon="cmd-alert"
+            app:iiv_size="16dp"
+            app:iiv_color="@android:color/white"
+            android:layout_centerVertical="true"
+            />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginLeft="24dp"
+            android:text="保修单"
             android:textColor="@android:color/white"
-            android:text="保修单" />
+            android:textSize="@dimen/titleTextSize" />
 
         <com.mikepenz.iconics.view.IconicsImageView
             android:layout_width="16dp"
@@ -34,35 +44,56 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:paddingBottom="@dimen/dialog_paddingBottom"
+        android:paddingBottom="@dimen/dialog_content_paddingBottom"
         android:paddingLeft="@dimen/dialog_paddingLeft"
         android:paddingRight="@dimen/dialog_paddingRight"
-        android:paddingTop="@dimen/dialog_paddingTop">
+        android:paddingTop="@dimen/dialog_content_paddingTop">
 
-        <android.support.design.widget.TextInputLayout
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            app:hintTextAppearance="@style/BottomDialog.HintTextAppearance">
-            <EditText
-                android:id="@+id/subjectEditText"
+            android:layout_height="wrap_content">
+            <com.mikepenz.iconics.view.IconicsImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:iiv_icon="cmd-comment-text-outline"
+                app:iiv_size="16dp"
+                app:iiv_color="@color/normalGray"/>
+            <android.support.design.widget.TextInputLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="标题" />
-        </android.support.design.widget.TextInputLayout>
-        <android.support.design.widget.TextInputLayout
+                android:layout_marginLeft="8dp"
+                app:hintTextAppearance="@style/BottomDialog.HintTextAppearance">
+                <EditText
+                    android:id="@+id/subjectEditText"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="标题" />
+            </android.support.design.widget.TextInputLayout>
+        </LinearLayout>
+
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            app:hintTextAppearance="@style/BottomDialog.HintTextAppearance">
-            <EditText
+            android:layout_height="wrap_content">
+            <com.mikepenz.iconics.view.IconicsImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:iiv_color="@color/normalGray"
+                app:iiv_icon="cmd-format-list-bulleted"
+                app:iiv_size="16dp"/>
+            <android.support.design.widget.TextInputLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="内容"
-                android:textAlignment="textStart"
-                android:inputType="textMultiLine"
-                android:maxLines="5" />
-        </android.support.design.widget.TextInputLayout>
-
-
+                android:layout_marginLeft="8dp"
+                app:hintTextAppearance="@style/BottomDialog.HintTextAppearance">
+                <EditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="内容"
+                    android:textAlignment="textStart"
+                    android:inputType="textMultiLine"
+                    android:maxLines="5" />
+            </android.support.design.widget.TextInputLayout>
+        </LinearLayout>
     </LinearLayout>
 
     <RelativeLayout

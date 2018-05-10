@@ -11,7 +11,7 @@ import android.widget.ProgressBar;
 
 import com.bdwater.waterservice.BaseActivity;
 import com.bdwater.waterservice.R;
-import com.bdwater.waterservice.remote.RemoteManager;
+import com.bdwater.waterservice.remote.RemoteBase;
 import com.scwang.smartrefresh.layout.SmartRefreshLayout;
 import com.scwang.smartrefresh.layout.api.RefreshLayout;
 import com.scwang.smartrefresh.layout.listener.OnRefreshListener;
@@ -60,7 +60,7 @@ public class PressureActivity extends BaseActivity {
     private void reload() {
         progressBar.setProgress(0);
         progressBar.setVisibility(View.VISIBLE);
-        webView.loadUrl(RemoteManager.baseUrl + "WaterControlData/WaterPressure");
+        webView.loadUrl(RemoteBase.baseUrl + "WaterControlData/WaterPressure");
 
     }
     private void onLoaded() {

@@ -1,50 +1,20 @@
 package com.bdwater.waterservice.site;
 
 
-import android.Manifest;
-import android.content.pm.PackageManager;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
-import android.graphics.Color;
-import android.graphics.Matrix;
-import android.graphics.drawable.BitmapDrawable;
-import android.graphics.drawable.Drawable;
-import android.location.Location;
-import android.location.LocationManager;
-import android.os.Build;
 import android.os.Bundle;
-import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.webkit.WebChromeClient;
 import android.webkit.WebView;
-import android.widget.ImageView;
 import android.widget.ProgressBar;
-import android.widget.TextView;
 
 import com.bdwater.waterservice.R;
-import com.bdwater.waterservice.remote.RemoteManager;
-import com.bdwater.waterservice.utils.IconicsUtil;
-import com.mikepenz.community_material_typeface_library.CommunityMaterial;
-import com.mikepenz.iconics.typeface.IIcon;
+import com.bdwater.waterservice.remote.RemoteBase;
 import com.scwang.smartrefresh.layout.SmartRefreshLayout;
 import com.scwang.smartrefresh.layout.api.RefreshLayout;
 import com.scwang.smartrefresh.layout.listener.OnRefreshListener;
-import com.tencent.map.geolocation.TencentLocation;
-import com.tencent.map.geolocation.TencentLocationListener;
-import com.tencent.map.geolocation.TencentLocationManager;
-import com.tencent.map.geolocation.TencentLocationRequest;
-import com.tencent.mapsdk.raster.model.BitmapDescriptorFactory;
-import com.tencent.mapsdk.raster.model.Circle;
-import com.tencent.mapsdk.raster.model.CircleOptions;
-import com.tencent.mapsdk.raster.model.LatLng;
-import com.tencent.mapsdk.raster.model.Marker;
-import com.tencent.mapsdk.raster.model.MarkerOptions;
-import com.tencent.tencentmap.mapsdk.map.MapView;
-import com.tencent.tencentmap.mapsdk.map.UiSettings;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -103,7 +73,7 @@ public class SiteFragment extends Fragment {
     private void reload() {
         progressBar.setProgress(0);
         progressBar.setVisibility(View.VISIBLE);
-        webView.loadUrl(RemoteManager.baseUrl + "WaterControlData/WaterPressure");
+        webView.loadUrl(RemoteBase.baseUrl + "WaterControlData/WaterPressure");
 
     }
     private void onLoaded() {
