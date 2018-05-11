@@ -27,11 +27,15 @@
         <!-- Customize your theme here. -->
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
-        <item name="colorAccent">@android:color/white</item>
+        <item name="colorAccent">@android:color/darker_gray</item>
 
-        <item name="android:colorControlNormal">@android:color/white</item>
-        <item name="android:colorControlActivated">@android:color/white</item>
-        <item name="android:colorControlHighlight">@android:color/white</item>
+        <item name="android:colorControlNormal">@android:color/black</item>
+        <item name="android:colorControlActivated">@android:color/black</item>
+        <item name="android:colorControlHighlight">@android:color/black</item>
+    </style>
+    <style name="Login.HintTextAppearance" parent="TextAppearance.Design.Hint">
+        <item name="android:textSize">@dimen/hintTextSize</item>
+        <item name="android:textColor">@android:color/black</item>
     </style>
 
     <style name="AppTheme.Button.Light" parent="Widget.AppCompat.Button.Borderless.Colored">
@@ -109,8 +113,5 @@
         <item name="android:textColor">@color/textColor</item>
     </style>
 
-    <style name="Login.HintTextAppearance" parent="TextAppearance.Design.Hint">
-        <item name="android:textSize">@dimen/hintTextSize</item>
-        <item name="android:textColor">@android:color/white</item>
-    </style>
+
 </resources>

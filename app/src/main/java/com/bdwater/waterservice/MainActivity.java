@@ -65,7 +65,7 @@ public class MainActivity extends BaseActivity {
             }
         });
 
-        startActivity(new Intent(MainActivity.this, LoginActivity.class));
+//        startActivity(new Intent(MainActivity.this, LoginActivity.class));
     }
     private ViewPager.OnPageChangeListener pageChangeListener = new ViewPager.OnPageChangeListener() {
         @Override

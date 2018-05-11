@@ -6,22 +6,34 @@
     android:layout_height="match_parent"
     tools:context="com.bdwater.waterservice.LoginActivity">
 
+    <!--android:background="@color/colorPrimary"-->
     <LinearLayout
         android:id="@+id/mainLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_centerVertical="true"
-        android:background="@color/colorPrimary"
+
         android:orientation="vertical"
         android:paddingBottom="@dimen/content_paddingBottom"
         android:paddingLeft="@dimen/paddingLeft"
         android:paddingRight="@dimen/paddingRight"
         android:paddingTop="@dimen/content_paddingTop">
 
+        <ProgressBar
+            android:id="@+id/progressBar"
+            style="?android:attr/progressBarStyleHorizontal"
+            android:layout_width="match_parent"
+            android:layout_height="5dp"
+            android:layout_marginBottom="@dimen/marginTop"
+            android:layout_marginLeft="@dimen/paddingLeft"
+            android:layout_marginRight="@dimen/paddingRight"
+            android:indeterminate="true"
+            android:visibility="invisible" />
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:gravity="bottom"
+            android:gravity="top"
             android:layout_marginLeft="@dimen/paddingLeft"
             android:layout_marginRight="@dimen/paddingRight"
             android:orientation="horizontal">
@@ -30,15 +42,16 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="6dp"
-                app:iiv_color="@android:color/white"
+                app:iiv_color="@android:color/darker_gray"
                 app:iiv_icon="cmd-phone"
                 app:iiv_size="16dp" />
 
             <android.support.design.widget.TextInputLayout
+                android:id="@+id/phoneTextInputLayout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="@dimen/marginLeft"
-                android:textColorHint="@android:color/white"
+                android:textColorHint="@android:color/darker_gray"
                 app:hintTextAppearance="@style/Login.HintTextAppearance">
 
                 <EditText
@@ -46,7 +59,9 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="@string/customer_phone"
-                    android:textColor="@android:color/white" />
+                    android:inputType="numberSigned"
+                    android:maxLength="11"
+                    android:textColor="@android:color/black" />
             </android.support.design.widget.TextInputLayout>
         </LinearLayout>
 
@@ -56,22 +71,23 @@
             android:layout_marginTop="@dimen/marginTop"
             android:layout_marginLeft="@dimen/paddingLeft"
             android:layout_marginRight="@dimen/paddingRight"
-            android:gravity="bottom"
+            android:gravity="top"
             android:orientation="horizontal">
             <com.mikepenz.iconics.view.IconicsImageView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="6dp"
-                app:iiv_color="@android:color/white"
+                app:iiv_color="@android:color/darker_gray"
                 app:iiv_icon="cmd-key"
                 app:iiv_size="16dp" />
 
             <android.support.design.widget.TextInputLayout
+                android:id="@+id/verifyCodeTextInputLayout"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="@dimen/marginLeft"
                 android:layout_weight="1"
-                android:textColorHint="@android:color/white"
+                android:textColorHint="@android:color/darker_gray"
                 app:hintTextAppearance="@style/Login.HintTextAppearance">
 
                 <EditText
@@ -79,7 +95,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="@string/verify_code"
-                    android:textColor="@android:color/white" />
+                    android:inputType="numberSigned"
+                    android:textColor="@android:color/black" />
             </android.support.design.widget.TextInputLayout>
 
             <Button
@@ -119,7 +136,7 @@
         android:layout_marginBottom="@dimen/marginTop"
         android:layout_marginLeft="@dimen/marginLeft"
         android:orientation="horizontal"
-        android:paddingLeft="@dimen/paddingLeft">
+        android:layout_centerHorizontal="true">
 
         <com.mikepenz.iconics.view.IconicsImageView
             android:layout_width="40dp"
