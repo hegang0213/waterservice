@@ -1,11 +1,22 @@
 package com.bdwater.waterservice;
 
+import android.content.Context;
 import android.content.Intent;
 import android.support.v4.view.ViewPager;
 import android.os.Bundle;
+import android.support.v4.widget.DrawerLayout;
+import android.support.v7.app.ActionBarDrawerToggle;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.util.AttributeSet;
+import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.MotionEvent;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.TextView;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -13,14 +24,29 @@ import butterknife.ButterKnife;
 import com.aurelhubert.ahbottomnavigation.AHBottomNavigation;
 import com.bdwater.waterservice.main.BottomNavigationCollection;
 import com.bdwater.waterservice.main.MainPagerAdapter;
+import com.bdwater.waterservice.model.User;
 import com.bdwater.waterservice.pressure.PressureActivity;
+import com.nikhilpanju.recyclerviewenhanced.OnActivityTouchListener;
+import com.nikhilpanju.recyclerviewenhanced.RecyclerTouchListener;
 
-public class MainActivity extends BaseActivity {
+import org.w3c.dom.Text;
+
+import java.util.ArrayList;
+import java.util.List;
+
+public class MainActivity extends BaseActivity implements RecyclerTouchListener.RecyclerTouchListenerHelper {
     public static final int PAGE_MAIN = 0;
     public static final int PAGE_QUERY = 1;
     public static final int PAGE_REPORT = 2;
     public static final int PAGE_SITE = 3;
     public static final int PAGE_NOTIFICATION = 4;
+
+    @BindView(R.id.drawerLayout)
+    DrawerLayout drawerLayout;
+    @BindView(R.id.phoneTextView)
+    TextView phoneTextView;
+    @BindView(R.id.recyclerView)
+    RecyclerView recyclerView;
 
     @BindView(R.id.toolbar)
     Toolbar toolbar;
@@ -29,7 +55,10 @@ public class MainActivity extends BaseActivity {
     @BindView(R.id.bottomNavigation)
     AHBottomNavigation bottomNavigation;
 
+    MainAdapter mainAdapter;
     MainPagerAdapter adapter;
+    private RecyclerTouchListener onTouchListener;
+    private OnActivityTouchListener touchListener;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,11 +68,41 @@ public class MainActivity extends BaseActivity {
         setSwipeBackEnable(false);
 
         setSupportActionBar(toolbar);
+        ActionBarDrawerToggle drawerToggle = new ActionBarDrawerToggle(this,
+                drawerLayout,
+                toolbar,
+                R.string.drawer_open,
+                R.string.drawer_close);
+        drawerToggle.syncState();
+        drawerLayout.addDrawerListener(drawerToggle);
+        phoneTextView.setText(User.instance.tel);
+
+        RowModel[] list = new RowModel[User.instance.customers.length];
+        for(int i = 0; i < User.instance.customers.length; i++) {
+            list[i] = new RowModel(Long.toString(User.instance.customers[i].customerNo),
+                    User.instance.customers[i].customerName);
+        }
+        mainAdapter = new MainAdapter(this, list);
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+        recyclerView.setAdapter(mainAdapter);
+
+        this.onTouchListener = new RecyclerTouchListener(this, recyclerView);
+        this.onTouchListener.setClickable(new RecyclerTouchListener.OnRowClickListener() {
+            @Override
+            public void onRowClicked(int position) {
+
+            }
+
+            @Override
+            public void onIndependentViewClicked(int independentViewID, int position) {
+
+            }
+        });
 
         adapter = new MainPagerAdapter(getSupportFragmentManager(), this);
         // setOffscreenPageLimit means that the number of pages will be keep in memory
         // beyond this number the page will be created
-        viewPager.setOffscreenPageLimit(5);
+        viewPager.setOffscreenPageLimit(3);
         viewPager.setAdapter(adapter);
         viewPager.addOnPageChangeListener(pageChangeListener);
 
@@ -64,9 +123,9 @@ public class MainActivity extends BaseActivity {
                 return true;
             }
         });
-
-//        startActivity(new Intent(MainActivity.this, LoginActivity.class));
     }
+
+
     private ViewPager.OnPageChangeListener pageChangeListener = new ViewPager.OnPageChangeListener() {
         @Override
         public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
@@ -104,5 +163,77 @@ public class MainActivity extends BaseActivity {
                 break;
         }
         return true;
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        recyclerView.addOnItemTouchListener(onTouchListener);
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        recyclerView.removeOnItemTouchListener(onTouchListener);
+    }
+
+    @Override
+    public boolean dispatchTouchEvent(MotionEvent ev) {
+        if (touchListener != null) touchListener.getTouchCoordinates(ev);
+        return super.dispatchTouchEvent(ev);
+    }
+
+    @Override
+    public void setOnActivityTouchListener(OnActivityTouchListener listener) {
+        this.touchListener = listener;
+    }
+
+    class MainAdapter extends RecyclerView.Adapter<MainAdapter.MainViewHolder> {
+        LayoutInflater inflater;
+        RowModel[] modelList;
+
+        public MainAdapter(Context context, RowModel[] list) {
+            inflater = LayoutInflater.from(context);
+            modelList = list;
+        }
+
+        @Override
+        public MainAdapter.MainViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+            View view = inflater.inflate(R.layout.drawer_item, parent, false);
+            return new MainViewHolder(view);
+        }
+
+        @Override
+        public void onBindViewHolder(MainAdapter.MainViewHolder holder, int position) {
+            holder.bindData(modelList[position]);
+        }
+
+        @Override
+        public int getItemCount() {
+            return modelList.length;
+        }
+
+        class MainViewHolder extends RecyclerView.ViewHolder {
+            TextView mainText, subText;
+            public MainViewHolder(View itemView) {
+                super(itemView);
+                mainText = (TextView)itemView.findViewById(R.id.mainText);
+                subText = (TextView)itemView.findViewById(R.id.subText);
+            }
+
+            public void bindData(RowModel rowModel) {
+                mainText.setText(rowModel.mainText);
+                subText.setText(rowModel.subText);
+            }
+        }
+
+    }
+    class RowModel {
+        public String mainText;
+        public String subText;
+        public RowModel(String main, String sub) {
+            this.mainText = main;
+            this.subText = sub;
+        }
     }
 }

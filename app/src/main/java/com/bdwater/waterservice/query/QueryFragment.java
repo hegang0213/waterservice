@@ -7,9 +7,13 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.webkit.WebChromeClient;
+import android.webkit.WebResourceError;
+import android.webkit.WebResourceRequest;
 import android.webkit.WebView;
+import android.webkit.WebViewClient;
 import android.widget.ProgressBar;
 
+import com.bdwater.waterservice.MainActivityFragment;
 import com.bdwater.waterservice.R;
 import com.bdwater.waterservice.model.User;
 import com.bdwater.waterservice.remote.RemoteBase;
@@ -23,7 +27,7 @@ import butterknife.ButterKnife;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class QueryFragment extends Fragment {
+public class QueryFragment extends MainActivityFragment {
     @BindView(R.id.refreshLayout)
     SmartRefreshLayout refreshLayout;
     @BindView(R.id.progressBar)
@@ -46,6 +50,13 @@ public class QueryFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_query, container, false);
         ButterKnife.bind(this, view);
         webView.getSettings().setJavaScriptEnabled(true);
+        webView.setWebViewClient(new WebViewClient() {
+            @Override
+            public void onReceivedError(WebView view, WebResourceRequest request, WebResourceError error) {
+                super.onReceivedError(view, request, error);
+                progressBar.setVisibility(View.GONE);
+            }
+        });
         webView.setWebChromeClient(new WebChromeClient() {
             @Override
             public void onProgressChanged(WebView view, int newProgress) {
@@ -63,13 +74,17 @@ public class QueryFragment extends Fragment {
                 refreshLayout.finishRefresh();
             }
         });
-        this.reload();
         return view;
     }
     private void reload() {
-        this.webView.loadUrl(RemoteBase.baseUrl + "WaterSale/CustomerView/" + User.instance.customerNo);
+        this.webView.loadUrl(RemoteBase.baseUrl + "WaterSale/CustomerView/" + this.currentCustomer.customerNo);
         this.progressBar.setProgress(0);
         this.progressBar.setVisibility(View.VISIBLE);
     }
 
+    @Override
+    protected void onCustomerSelectionChanged() {
+        super.onCustomerSelectionChanged();
+        this.reload();
+    }
 }

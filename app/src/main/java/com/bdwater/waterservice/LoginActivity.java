@@ -1,27 +1,21 @@
 package com.bdwater.waterservice;
 
-import android.content.DialogInterface;
 import android.content.Intent;
-import android.graphics.Color;
-import android.os.Handler;
 import android.support.design.widget.TextInputLayout;
-import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.text.SpannableStringBuilder;
-import android.text.style.ForegroundColorSpan;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ProgressBar;
 
+import com.bdwater.waterservice.model.Customer;
+import com.bdwater.waterservice.model.User;
 import com.bdwater.waterservice.remote.LoginRemote;
 import com.bdwater.waterservice.remote.RemoteListener;
 import com.bdwater.waterservice.utils.Utility;
 import com.google.gson.Gson;
-
-import org.w3c.dom.Text;
 
 import java.io.IOException;
 
@@ -48,20 +42,26 @@ public class LoginActivity extends AppCompatActivity {
     LoginRemote remote = new LoginRemote();
     long smsID = -1;
 
+    private static final boolean DEBUG = true;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        if(DEBUG) debug();
+
         setContentView(R.layout.activity_login);
         ButterKnife.bind(this);
 
         phoneEditText.setText("18003328885");
+        verifyCodeEditText.setText("9999");
         remote.setRemoteListener(new RemoteListener() {
             @Override
             public void onResponse(String target, Call call, int state, String jsonResult, IOException exception) {
 
                 if(state != LoginRemote.SUCCESS_STATE)  {
                     smsID = -1;
-                    Utility.showAlertDialog(LoginActivity.this, "错误", exception.getMessage());
+                    Utility.showAlertDialog(loginButton, LoginActivity.this, "错误",
+                            exception.getMessage() == null ? exception.toString(): exception.getMessage());
                     completed();
                     return;
                 }
@@ -92,6 +92,14 @@ public class LoginActivity extends AppCompatActivity {
                 else {
                     final LoginRemote.LoginResponse response = new Gson().fromJson(jsonResult, LoginRemote.LoginResponse.class);
                     if(response.loginSuccess == 0) {
+                        User.instance.tel = phoneEditText.getText().toString();
+                        User.Customer[] customers = new User.Customer[response.customerNoList.length];
+                        for(int i = 0; i < response.customerNoList.length; i++) {
+                            customers[i] = new User.Customer();
+                            customers[i].customerNo = response.customerNoList[i].customerNo;
+                        }
+                        User.instance.customers = customers;
+                        User.instance.currentCustomer = customers[0];
                         Intent intent = new Intent(LoginActivity.this, MainActivity.class);
                         startActivity(intent);
                         finish();
@@ -116,6 +124,7 @@ public class LoginActivity extends AppCompatActivity {
                 sending();
                 phoneTextInputLayout.setErrorEnabled(false);
                 phoneTextInputLayout.setError(null);
+                sendVerifyCodeButton.setText(R.string.sending_verify_code);
                 remote.sendVerifyCode(phoneEditText.getText().toString());
             }
         });
@@ -124,11 +133,28 @@ public class LoginActivity extends AppCompatActivity {
             public void onClick(View view) {
                 if(!validate()) return;
                 sending();
+                loginButton.setText(R.string.login_waitting);
                 remote.login(phoneEditText.getText().toString(), verifyCodeEditText.getText().toString(), Long.toString(smsID));
             }
         });
     }
+    void debug() {
+        User.Customer[] customers = new User.Customer[2];
+        customers[0] = new User.Customer();
+        customers[0].customerName = "香槟小镇5-3-F2";
+        customers[0].customerNo = 85437l;
+        customers[1] = new User.Customer();
+        customers[1].customerName = "香槟小镇11-2-C1";
+        customers[1].customerNo = 86380l;
 
+        User.instance.customers = customers;
+        User.instance.tel = "18003328885";
+        User.instance.currentCustomer = customers[0];
+
+        Intent intent = new Intent(LoginActivity.this, MainActivity.class);
+        startActivity(intent);
+        finish();
+    }
     boolean validate(){
         boolean hasError = false;
         if(phoneEditText.getText().toString().trim().equals("")) {
@@ -171,6 +197,8 @@ public class LoginActivity extends AppCompatActivity {
                 verifyCodeEditText.setEnabled(true);
                 sendVerifyCodeButton.setEnabled(true);
                 loginButton.setEnabled(true);
+                sendVerifyCodeButton.setText(R.string.send_verify_code);
+                loginButton.setText(R.string.login);
             }
         });
 

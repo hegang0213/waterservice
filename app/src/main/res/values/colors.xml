@@ -13,6 +13,11 @@
     <color name="colorControlActivated">#505050</color>
     <color name="colorControlHighlight">#7070c8</color>
 
+    <color name="buttonTextColor">#000</color>
+    <color name="buttonTextColorDisabled">#AAA</color>
+    <color name="buttonTextColorDark">#FFF</color>
+    <color name="buttonTextColorDisabledDark">#DDD</color>
+
     <color name="locationColor">#7073ac</color>
 
     <color name="darkRed">#cc0000</color>

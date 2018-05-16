@@ -6,6 +6,7 @@ import android.content.DialogInterface;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.graphics.Color;
+import android.view.View;
 
 import com.bdwater.waterservice.LoginActivity;
 
@@ -50,5 +51,13 @@ public class Utility {
                 .create();
         alertDialog.show();
         alertDialog.getButton(DialogInterface.BUTTON_POSITIVE).setTextColor(Color.BLACK);
+    }
+    public static void showAlertDialog(View view, final Context context, final String title, final String message) {
+        view.post(new Runnable() {
+            @Override
+            public void run() {
+                showAlertDialog(context, title, message);
+            }
+        });
     }
 }
