@@ -26,6 +26,7 @@ import com.bdwater.waterservice.main.BottomNavigationCollection;
 import com.bdwater.waterservice.main.MainPagerAdapter;
 import com.bdwater.waterservice.model.User;
 import com.bdwater.waterservice.pressure.PressureActivity;
+import com.mikepenz.iconics.view.IconicsImageView;
 import com.nikhilpanju.recyclerviewenhanced.OnActivityTouchListener;
 import com.nikhilpanju.recyclerviewenhanced.RecyclerTouchListener;
 
@@ -79,8 +80,10 @@ public class MainActivity extends BaseActivity implements RecyclerTouchListener.
 
         RowModel[] list = new RowModel[User.instance.customers.length];
         for(int i = 0; i < User.instance.customers.length; i++) {
-            list[i] = new RowModel(Long.toString(User.instance.customers[i].customerNo),
-                    User.instance.customers[i].customerName);
+            User.Customer customer = User.instance.customers[i];
+            list[i] = new RowModel(Long.toString(customer.customerNo),
+                    customer.customerName);
+            list[i].current = User.instance.isCurrent(customer);
         }
         mainAdapter = new MainAdapter(this, list);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
@@ -90,7 +93,16 @@ public class MainActivity extends BaseActivity implements RecyclerTouchListener.
         this.onTouchListener.setClickable(new RecyclerTouchListener.OnRowClickListener() {
             @Override
             public void onRowClicked(int position) {
-
+                RowModel row = mainAdapter.getItem(position);
+                Long no = Long.parseLong(row.mainText);
+                if(!User.instance.isCurrent(no)) {
+                    drawerLayout.closeDrawers();
+                    User.instance.setCurrentCustomer(no);
+                    Updatable updatable = (Updatable) adapter.getFragment(viewPager.getCurrentItem());
+                    updatable.checkAndRunUpdate();
+                    mainAdapter.setCurrent(position);
+                    mainAdapter.notifyDataSetChanged();
+                }
             }
 
             @Override
@@ -136,6 +148,9 @@ public class MainActivity extends BaseActivity implements RecyclerTouchListener.
         public void onPageSelected(int position) {
             // set current item of navigation when page was changed
             bottomNavigation.setCurrentItem(position);
+            if(adapter.getFragment(position) instanceof Updatable) {
+                ((Updatable)adapter.getFragment(position)).checkAndRunUpdate();
+            }
         }
 
         @Override
@@ -212,16 +227,27 @@ public class MainActivity extends BaseActivity implements RecyclerTouchListener.
         public int getItemCount() {
             return modelList.length;
         }
+        public RowModel getItem(int position) {
+            return modelList[position];
+        }
+        public void setCurrent(int position) {
+            for(int i = 0; i < this.modelList.length; i++) {
+                this.modelList[i].current = position == i;
+            }
+        }
 
         class MainViewHolder extends RecyclerView.ViewHolder {
             TextView mainText, subText;
+            IconicsImageView icon;
             public MainViewHolder(View itemView) {
                 super(itemView);
+                icon = (IconicsImageView)itemView.findViewById(R.id.icon);
                 mainText = (TextView)itemView.findViewById(R.id.mainText);
                 subText = (TextView)itemView.findViewById(R.id.subText);
             }
 
             public void bindData(RowModel rowModel) {
+                icon.setVisibility(rowModel.current ? View.VISIBLE: View.INVISIBLE);
                 mainText.setText(rowModel.mainText);
                 subText.setText(rowModel.subText);
             }
@@ -229,6 +255,7 @@ public class MainActivity extends BaseActivity implements RecyclerTouchListener.
 
     }
     class RowModel {
+        public boolean current = false;
         public String mainText;
         public String subText;
         public RowModel(String main, String sub) {

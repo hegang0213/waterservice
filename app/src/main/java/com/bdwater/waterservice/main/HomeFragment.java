@@ -13,6 +13,7 @@ import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.bdwater.waterservice.MainActivity;
@@ -49,6 +50,8 @@ public class HomeFragment extends MainActivityFragment {
 
     @BindView(R.id.refreshLayout)
     SmartRefreshLayout refreshLayout;
+    @BindView(R.id.progressBar)
+    ProgressBar progressBar;
     @BindView(R.id.customerNoTextView)
     TextView customerNoTextView;
     @BindView(R.id.customerNameTextView)
@@ -95,6 +98,7 @@ public class HomeFragment extends MainActivityFragment {
             @Override
             public void onRefresh(RefreshLayout refreshLayout) {
                 load();
+                progressBar.setVisibility(View.INVISIBLE);
             }
         });
         detailButton.setOnClickListener(new View.OnClickListener() {
@@ -138,20 +142,28 @@ public class HomeFragment extends MainActivityFragment {
     }
 
     @Override
+    public void onUpdate() {
+        this.load();
+    }
+
+    @Override
     protected void onCustomerSelectionChanged() {
         super.onCustomerSelectionChanged();
         Log.e(TAG, "onCustomerSelectionChanged");
         this.load();
     }
     private void load() {
+        Log.e(TAG, "load()");
         if(isLoading) return;
         isLoading = true;
-        homeRemote.getCustomer(currentCustomer.customerNo);
+        homeRemote.getCustomer(User.instance.currentCustomer.customerNo);
+        progressBar.setVisibility(View.VISIBLE);
     }
 
     private RemoteListener listener = new RemoteListener() {
         @Override
         public void onResponse(String target, Call call, int state, String jsonResult, IOException exception) {
+            Log.e(TAG, "onResponse");
             if(state == RemoteBase.SUCCESS_STATE) {
                 customer = new Gson().fromJson(jsonResult, Customer.class);
                 customerNoTextView.post(new Runnable() {
@@ -160,6 +172,7 @@ public class HomeFragment extends MainActivityFragment {
                         updateUI();
                     }
                 });
+                currentCustomer = User.instance.currentCustomer;
             }
             else {
                 Utility.showAlertDialog(customerNoTextView, getActivity(), "错误",
@@ -175,6 +188,7 @@ public class HomeFragment extends MainActivityFragment {
         }
     };
     private void updateUI() {
+        Log.e(TAG, "updateUI()");
         this.customerPhoneTextView.setText(User.instance.tel);
 
         this.customerNoTextView.setText(Long.toString(this.customer.customerNo));
@@ -184,6 +198,8 @@ public class HomeFragment extends MainActivityFragment {
         this.depositTextView.setText(Double.toString(this.customer.deposit));
     }
     private void completed() {
+        Log.e(TAG, "completed()");
+        progressBar.setVisibility(View.INVISIBLE);
         refreshLayout.finishRefresh();
         isLoading = false;
     }
@@ -192,9 +208,6 @@ public class HomeFragment extends MainActivityFragment {
     public void onSaveInstanceState(Bundle outState) {
         Log.e(TAG, "onSaveInstanceState");
         super.onSaveInstanceState(outState);
-        if(outState != null) {
-            outState.putString("customer", new Gson().toJson(customer));
-        }
     }
 
     @Override
@@ -207,10 +220,5 @@ public class HomeFragment extends MainActivityFragment {
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         Log.e(TAG, "onActivityCreated");
         super.onActivityCreated(savedInstanceState);
-        Log.e(TAG, "CustomerNo:" + customerNoTextView.getText());
-//        if(null != savedInstanceState) {
-//            customer = new Gson().fromJson(savedInstanceState.getString("customer"), Customer.class);
-//            updateUI();
-//        }
     }
 }

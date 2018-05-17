@@ -76,6 +76,12 @@ public class QueryFragment extends MainActivityFragment {
         });
         return view;
     }
+
+    @Override
+    public void onUpdate() {
+        this.reload();
+    }
+
     private void reload() {
         this.webView.loadUrl(RemoteBase.baseUrl + "WaterSale/CustomerView/" + this.currentCustomer.customerNo);
         this.progressBar.setProgress(0);

@@ -13,7 +13,6 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-
         <TextView
             android:id="@+id/textView"
             android:layout_width="0dp"
@@ -138,6 +137,20 @@
             android:src="@drawable/ic_map_marker"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/phoneImageView" />
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="4dp">
+            <ProgressBar
+                android:id="@+id/progressBar"
+                style="?android:attr/progressBarStyleHorizontal"
+                android:background="@color/colorPrimary"
+                android:layout_width="match_parent"
+                android:layout_height="4dp"
+                android:layout_gravity="center"
+                android:visibility="invisible"
+                android:indeterminate="true"/>
+        </FrameLayout>
 
         <LinearLayout
             android:id="@+id/linearLayout"

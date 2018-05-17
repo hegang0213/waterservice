@@ -12,7 +12,7 @@ import com.inthecheesefactory.thecheeselibrary.fragment.support.v4.app.StatedFra
  * Created by hegang on 2018/5/3.
  */
 
-public class MainActivityFragment extends Fragment {
+public class MainActivityFragment extends Fragment implements Updatable {
     private static final String TAG = "MainActivityFragment";
     private MainActivity mainActivity;
     protected User.Customer currentCustomer;
@@ -29,15 +29,31 @@ public class MainActivityFragment extends Fragment {
 
     @Override
     public void onResume() {
-        Log.e(TAG, "onResume");
-        Log.e(TAG, "currentCustomer == User.instance.currentCustomer : " + Boolean.toString(this.currentCustomer == User.instance.currentCustomer));
         super.onResume();
-        if(this.currentCustomer != User.instance.currentCustomer) {
+        Log.e(TAG, "onResume");
+        Log.e(TAG, "currentCustomer == User.instance.currentCustomer : " + User.instance.isCurrent(this.currentCustomer));
+        super.onResume();
+        if(!User.instance.isCurrent(this.currentCustomer)) {
             this.currentCustomer = User.instance.currentCustomer;
             this.onCustomerSelectionChanged();
         }
     }
     protected void onCustomerSelectionChanged() {
         Log.e(TAG, "onCustomerSelectionChanged");
+    }
+
+    @Override
+    public void checkAndRunUpdate() {
+        Log.e(TAG, "checkAndRunUpdate()");
+        if(!User.instance.isCurrent(this.currentCustomer)) {
+            this.currentCustomer = User.instance.currentCustomer;
+            Log.e(TAG, "onUpdate()");
+            this.onUpdate();
+        }
+    }
+
+    @Override
+    public void onUpdate() {
+
     }
 }
