@@ -42,7 +42,7 @@ public class LoginActivity extends AppCompatActivity {
     LoginRemote remote = new LoginRemote();
     long smsID = -1;
 
-    private static final boolean DEBUG = true;
+    private static final boolean DEBUG = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -92,6 +92,8 @@ public class LoginActivity extends AppCompatActivity {
                 else {
                     final LoginRemote.LoginResponse response = new Gson().fromJson(jsonResult, LoginRemote.LoginResponse.class);
                     if(response.loginSuccess == 0) {
+                        // it's success to login
+                        // set user and save
                         User.instance.tel = phoneEditText.getText().toString();
                         User.Customer[] customers = new User.Customer[response.customerNoList.length];
                         for(int i = 0; i < response.customerNoList.length; i++) {
@@ -100,9 +102,16 @@ public class LoginActivity extends AppCompatActivity {
                         }
                         User.instance.customers = customers;
                         User.instance.currentCustomer = customers[0];
+                        User.instance.isLogon = true;
+
+                        // save into shared preferences
+                        User.instance.save(LoginActivity.this);
+
+                        // start main activity
                         Intent intent = new Intent(LoginActivity.this, MainActivity.class);
                         startActivity(intent);
                         finish();
+                        return;
                     }
                     else {
                         loginButton.post(new Runnable() {

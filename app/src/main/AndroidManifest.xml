@@ -38,15 +38,14 @@
             android:name="TencentMapSDK"
             android:value="IUGBZ-67IKK-OIUJX-AOXIP-YSMV6-ELFL4" />
 
-        <activity android:name=".MainActivity">
-
-        </activity>
+        <activity android:name=".MainActivity"></activity>
         <activity android:name=".pressure.PressureActivity" />
-        <activity android:name=".LoginActivity" android:theme="@style/Login.AppTheme">
+        <activity android:name=".LoginActivity" android:theme="@style/Login.AppTheme"></activity>
+        <activity android:name=".SplashActivity" android:theme="@style/Login.AppTheme">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
+            </intent-filter>>
         </activity>
     </application>
 

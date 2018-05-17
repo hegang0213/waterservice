@@ -1,7 +1,9 @@
 package com.bdwater.waterservice.model;
 
+import android.content.Context;
 import android.content.Intent;
 
+import com.bdwater.waterservice.utils.StorageUtil;
 import com.google.gson.annotations.Expose;
 
 /**
@@ -10,13 +12,18 @@ import com.google.gson.annotations.Expose;
 
 public class User {
     public boolean isLogon = false;
-    public String tel = "18003328885";
+    public String tel = null;
+    @Expose(deserialize = false, serialize = false)
     public Customer currentCustomer;
+    //@Expose(deserialize = false, serialize = false)
     public Customer[] customers;
     @Expose(deserialize = false, serialize = false)
     public static User instance = new User();
     private User() {
 
+    }
+    public boolean isEmpty() {
+        return (tel == null);
     }
 
     public static class Customer {
@@ -37,6 +44,17 @@ public class User {
                 this.currentCustomer = this.customers[i];
                 break;
             }
+        }
+    }
+    public void save(Context context) {
+        StorageUtil.put(context, StorageUtil.USER, instance);
+    }
+    public void read(Context context) {
+        User user = StorageUtil.get(context, StorageUtil.USER, User.class);
+        if(user != null) {
+            instance = user;
+            if(instance.customers != null && instance.customers.length > 0)
+                instance.currentCustomer = instance.customers[0];
         }
     }
 }
