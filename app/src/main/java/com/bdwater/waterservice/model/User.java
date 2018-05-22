@@ -57,4 +57,7 @@ public class User {
                 instance.currentCustomer = instance.customers[0];
         }
     }
+    public void clear(Context context) {
+        StorageUtil.remove(context, StorageUtil.USER);
+    }
 }

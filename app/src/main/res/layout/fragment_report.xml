@@ -15,26 +15,43 @@
         <com.scwang.smartrefresh.layout.header.ClassicsHeader
             android:layout_width="match_parent"
             android:layout_height="wrap_content"/>
-        <android.support.v7.widget.RecyclerView
-            android:id="@+id/recyclerView"
+        <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent">
+            <ProgressBar
+                android:id="@+id/progressBar"
+                android:layout_width="match_parent"
+                android:layout_height="5dp"
+                style="?android:attr/progressBarStyleHorizontal"
+                android:padding="0dp"
+                android:layout_margin="0dp"
+                android:progress="0"
+                />
+            <WebView
+                android:id="@+id/webView"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_toEndOf="@id/progressBar"/>
+        </RelativeLayout>
 
-        </android.support.v7.widget.RecyclerView>
     </com.scwang.smartrefresh.layout.SmartRefreshLayout>
-    <com.mikepenz.iconics.view.IconicsImageView
-        android:id="@+id/plusImageView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+    <RelativeLayout
+        android:layout_width="24dp"
+        android:layout_height="24dp"
         android:layout_marginRight="20dp"
-        android:layout_marginBottom="20dp"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentBottom="true"
-        android:clickable="true"
-        android:focusableInTouchMode="true"
-        android:focusable="true"
-        app:iiv_color="@drawable/ico_selector"
-        app:iiv_icon="cmd-plus-circle"
-        app:iiv_size="24dp"
-        />
+        android:layout_marginTop="10dp"
+        android:layout_alignParentRight="true">
+        <com.mikepenz.iconics.view.IconicsImageView
+            android:id="@+id/backImageView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:clickable="true"
+            android:focusableInTouchMode="true"
+            android:focusable="true"
+            app:iiv_color="@android:color/white"
+            app:iiv_icon="cmd-arrow-left"
+            app:iiv_size="20dp"
+            />
+    </RelativeLayout>
+
 </RelativeLayout>

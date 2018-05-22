@@ -72,6 +72,17 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_below="@id/header"
+            android:layout_above="@id/logoutButton"
             />
+
+        <Button
+            android:id="@+id/logoutButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            style="@style/Widget.AppCompat.Button.Colored"
+            android:background="@drawable/button_danger"
+            android:textColor="@android:color/white"
+            android:text="@string/logout"
+            android:layout_alignParentBottom="true"/>
     </RelativeLayout>
 </android.support.v4.widget.DrawerLayout>

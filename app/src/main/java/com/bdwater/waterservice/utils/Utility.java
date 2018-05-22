@@ -38,8 +38,13 @@ public class Utility {
         // 判断packageNames中是否有目标程序的包名，有TRUE，没有FALSE
         return packageNames.contains(packageName);
     }
+    private static AlertDialog.Builder buildAlertDialog(Context context) {
+        AlertDialog.Builder builder = new AlertDialog.Builder(context);
+        return builder;
+    }
     public static void showAlertDialog(Context context, String title, String message) {
-        android.support.v7.app.AlertDialog alertDialog = new android.support.v7.app.AlertDialog.Builder(context)
+        AlertDialog.Builder builder = buildAlertDialog(context);
+        builder = builder
                 .setTitle(title)
                 .setMessage(message)
                 .setPositiveButton("关闭", new DialogInterface.OnClickListener() {
@@ -47,10 +52,20 @@ public class Utility {
                     public void onClick(DialogInterface dialogInterface, int i) {
                         dialogInterface.dismiss();
                     }
-                })
-                .create();
-        alertDialog.show();
-        alertDialog.getButton(DialogInterface.BUTTON_POSITIVE).setTextColor(Color.BLACK);
+                });
+        AlertDialog dialog = builder.create();
+        dialog.show();
+        dialog.getButton(DialogInterface.BUTTON_POSITIVE).setTextColor(Color.BLACK);
+    }
+    public static void showRetryAlertDialog(Context context, String title, String message, String buttonText, DialogInterface.OnClickListener listener) {
+        AlertDialog.Builder builder = buildAlertDialog(context);
+        builder = builder
+                .setTitle(title)
+                .setMessage(message)
+                .setPositiveButton(buttonText, listener);
+        AlertDialog dialog = builder.create();
+        dialog.show();
+        dialog.getButton(DialogInterface.BUTTON_POSITIVE).setTextColor(Color.BLACK);
     }
     public static void showAlertDialog(View view, final Context context, final String title, final String message) {
         view.post(new Runnable() {

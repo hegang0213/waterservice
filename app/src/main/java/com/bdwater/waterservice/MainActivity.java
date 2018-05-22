@@ -16,6 +16,7 @@ import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.TextView;
 
 import butterknife.BindView;
@@ -48,6 +49,8 @@ public class MainActivity extends BaseActivity implements RecyclerTouchListener.
     TextView phoneTextView;
     @BindView(R.id.recyclerView)
     RecyclerView recyclerView;
+    @BindView(R.id.logoutButton)
+    Button logoutButton;
 
     @BindView(R.id.toolbar)
     Toolbar toolbar;
@@ -108,6 +111,14 @@ public class MainActivity extends BaseActivity implements RecyclerTouchListener.
             @Override
             public void onIndependentViewClicked(int independentViewID, int position) {
 
+            }
+        });
+        logoutButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                User.instance.clear(MainActivity.this);
+                startActivity(new Intent(MainActivity.this, LoginActivity.class));
+                finish();
             }
         });
 

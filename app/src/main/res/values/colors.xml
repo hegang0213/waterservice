@@ -17,12 +17,13 @@
     <color name="buttonTextColorDisabled">#AAA</color>
     <color name="buttonTextColorDark">#FFF</color>
     <color name="buttonTextColorDisabledDark">#DDD</color>
+    <color name="buttonDefaultColor">#7272f7</color>
 
     <color name="locationColor">#7073ac</color>
 
     <color name="darkRed">#cc0000</color>
     <color name="red">#FF0000</color>
-    <color name="backgroundGray">#eaeaea</color>
+    <color name="backgroundGray">#dce7ff</color>
     <color name="lightGray">#A0A0A0</color>
     <color name="normalGray">#808080</color>
     <color name="navigationAccentColor">#000</color>

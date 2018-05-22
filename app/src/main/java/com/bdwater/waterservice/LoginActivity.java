@@ -99,6 +99,7 @@ public class LoginActivity extends AppCompatActivity {
                         for(int i = 0; i < response.customerNoList.length; i++) {
                             customers[i] = new User.Customer();
                             customers[i].customerNo = response.customerNoList[i].customerNo;
+                            customers[i].customerName = response.customerNoList[i].customerName;
                         }
                         User.instance.customers = customers;
                         User.instance.currentCustomer = customers[0];

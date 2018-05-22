@@ -14,6 +14,8 @@
 
     <dimen name="marginLeft">12dp</dimen>
     <dimen name="marginTop">12dp</dimen>
+    <dimen name="marginLeft2x">24dp</dimen>
+    <dimen name="marginRight2x">24dp</dimen>
     <dimen name="paddingLeft">24dp</dimen>
     <dimen name="paddingRight">24dp</dimen>
     <dimen name="paddingTop">12dp</dimen>

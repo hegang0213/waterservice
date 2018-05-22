@@ -37,5 +37,13 @@ public class StorageUtil {
         if(value == null) return null;
         return new Gson().fromJson(value, classOfT);
     }
+    public static void remove(Context context, String tag) {
+        SharedPreferences sp = getSharedPreferences(context);
+        if(sp.contains(tag)) {
+            sp.edit()
+                    .remove(tag)
+                    .commit();
+        }
+    }
 
 }
