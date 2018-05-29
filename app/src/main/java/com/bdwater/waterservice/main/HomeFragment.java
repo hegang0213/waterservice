@@ -7,6 +7,8 @@ import android.content.pm.PackageManager;
 import android.graphics.drawable.Icon;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.design.widget.CoordinatorLayout;
+import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -16,6 +18,7 @@ import android.view.ViewGroup;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
+import com.bdwater.waterservice.CustomApplication;
 import com.bdwater.waterservice.MainActivity;
 import com.bdwater.waterservice.MainActivityFragment;
 import com.bdwater.waterservice.R;
@@ -60,6 +63,9 @@ public class HomeFragment extends MainActivityFragment {
     TextView customerAddressTextView;
     @BindView(R.id.customerPhoneTextView)
     TextView customerPhoneTextView;
+
+    @BindView(R.id.isBillTextView)
+    TextView isBillTextView;
     @BindView(R.id.billPayTextView)
     TextView billPayTextView;
     @BindView(R.id.depositTextView)
@@ -110,8 +116,10 @@ public class HomeFragment extends MainActivityFragment {
         weixinButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if(!Utility.isAvailiable(getActivity(), "com.tencent.mm"))
+                if(!Utility.isAvailiable(getActivity(), "com.tencent.mm")) {
+                    Snackbar.make(CustomApplication.getMainActivity().getCoordinatorLayout(), R.string.no_weixin, Snackbar.LENGTH_LONG).show();
                     return;
+                }
                 Intent intent = new Intent();
                 ComponentName cmp = new ComponentName("com.tencent.mm", "com.tencent.mm.ui.LauncherUI");// 报名该有activity
 
@@ -126,8 +134,10 @@ public class HomeFragment extends MainActivityFragment {
         alipayButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if(!Utility.isAvailiable(getActivity(), "com.eg.android.AlipayGhpone"))
+                if(!Utility.isAvailiable(getActivity(), "com.eg.android.AlipayGhpone")) {
+                    Snackbar.make(CustomApplication.getMainActivity().getCoordinatorLayout(), R.string.no_alipay, Snackbar.LENGTH_LONG).show();
                     return;
+                }
                 Intent intent = packageManager.getLaunchIntentForPackage("com.eg.android.AlipayGphone");
 
                 intent.setAction(Intent.ACTION_MAIN);
@@ -194,8 +204,11 @@ public class HomeFragment extends MainActivityFragment {
         this.customerNoTextView.setText(Long.toString(this.customer.customerNo));
         this.customerNameTextView.setText(this.customer.customerName);
         this.customerAddressTextView.setText(this.customer.address);
+
+        this.isBillTextView.setText(this.customer.billTotalCurrentPay > this.customer.deposit ? "有": "无");
         this.billPayTextView.setText(Double.toString(this.customer.billTotalCurrentPay));
         this.depositTextView.setText(Double.toString(this.customer.deposit));
+
     }
     private void completed() {
         Log.e(TAG, "completed()");

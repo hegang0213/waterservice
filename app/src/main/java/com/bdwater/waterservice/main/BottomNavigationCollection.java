@@ -34,7 +34,7 @@ public class BottomNavigationCollection {
         addItem(QUERY, R.string.menu_query, CommunityMaterial.Icon.cmd_account_search);
         addItem(REPORT, R.string.menu_report, CommunityMaterial.Icon.cmd_alert_outline);
         addItem(SITE, R.string.menu_site, CommunityMaterial.Icon.cmd_map_marker_outline);
-        addItem(NOTIFICATION, R.string.menu_notification, CommunityMaterial.Icon.cmd_comment_text_outline);
+        //addItem(NOTIFICATION, R.string.menu_notification, CommunityMaterial.Icon.cmd_comment_text_outline);
     }
     public void addItem(String name, @StringRes Integer id, IIcon icon) {
         Resources resources = this.context.getResources();
@@ -50,6 +50,9 @@ public class BottomNavigationCollection {
                     Color.BLACK);
             navigation.addItem(ahItem);
         }
+    }
+    public int getCount() {
+        return items.size();
     }
 
     static class BottomNavigationItem {

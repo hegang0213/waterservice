@@ -22,6 +22,7 @@ public class MainPagerAdapter extends FragmentPagerAdapter {
     private Context context;
     private FragmentManager fragmentManager;
     private HashMap<Integer, String> fragmentTags;
+    private Integer size;
     public MainPagerAdapter(FragmentManager fm, Context context) {
         super(fm);
         this.context = context;
@@ -54,7 +55,10 @@ public class MainPagerAdapter extends FragmentPagerAdapter {
 
     @Override
     public int getCount() {
-        return 5;
+        return size;
+    }
+    public void setCount(int count) {
+        size = count;
     }
 
     @Override

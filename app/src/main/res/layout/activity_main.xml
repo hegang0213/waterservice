@@ -6,7 +6,9 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="com.bdwater.waterservice.MainActivity">
+
     <android.support.design.widget.CoordinatorLayout
+        android:id="@+id/coordinatorLayout"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
@@ -15,29 +17,29 @@
             android:layout_height="wrap_content"
             android:fitsSystemWindows="true"
             app:elevation="0dp">
+
             <android.support.v7.widget.Toolbar
                 android:id="@+id/toolbar"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:theme="@style/ToolbarTheme"
-                app:titleTextAppearance="@style/Toolbar.TitleText"
                 app:popupTheme="@style/ToolbarPopupTheme"
-                app:title="@string/app_name">
-
-            </android.support.v7.widget.Toolbar>
+                app:title="@string/app_name"
+                app:titleTextAppearance="@style/Toolbar.TitleText"></android.support.v7.widget.Toolbar>
         </android.support.design.widget.AppBarLayout>
+
         <android.support.v4.view.ViewPager
             android:id="@+id/viewPager"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="?android:attr/actionBarSize"
-            app:layout_behavior="@string/appbar_scrolling_view_behavior"/>
+            app:layout_behavior="@string/appbar_scrolling_view_behavior" />
+
         <com.aurelhubert.ahbottomnavigation.AHBottomNavigation
             android:id="@+id/bottomNavigation"
             android:layout_width="match_parent"
             android:layout_height="?android:attr/actionBarSize"
-            android:layout_gravity="bottom"
-            />
+            android:layout_gravity="bottom" />
     </android.support.design.widget.CoordinatorLayout>
     <RelativeLayout
         android:layout_width="240dp"

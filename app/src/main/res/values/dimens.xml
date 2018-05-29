@@ -31,4 +31,6 @@
     <dimen name="dialog_paddingBottom">12dp</dimen>
     <dimen name="dialog_content_paddingTop">24dp</dimen>
     <dimen name="dialog_content_paddingBottom">24dp</dimen>
+
+    <dimen name="button_height">35dp</dimen>
 </resources>

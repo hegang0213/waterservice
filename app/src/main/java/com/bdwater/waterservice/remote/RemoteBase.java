@@ -14,6 +14,7 @@ import okhttp3.Response;
 
 public class RemoteBase {
     public final static String baseUrl = "http://121.18.65.232:50030/";
+    public final static String updateUrl = "http://121.18.65.232:50030/update/update.json";
     public final static int SUCCESS_STATE = 0;
     public final static int FAILED_STATE = -1;
     private String url;

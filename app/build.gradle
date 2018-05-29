@@ -13,8 +13,8 @@ android {
         applicationId "com.bdwater.waterservice"
         minSdkVersion 22
         targetSdkVersion 26
-        versionCode 1
-        versionName "1.0"
+        versionCode 2
+        versionName "1.1"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
 //        ndk {
 //            abiFilters 'armeabi'
@@ -37,6 +37,8 @@ dependencies {
     androidTestImplementation 'com.android.support.test:runner:1.0.1'
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.1'
 
+    implementation 'com.zhy:okhttputils:2.6.2'
+    //implementation 'com.squareup.okhttp3:okhttp:3.10.0'
     implementation 'com.scwang.smartrefresh:SmartRefreshLayout:1.0.5.1'
 
     implementation 'com.android.support:design:26.1.+'
@@ -47,7 +49,7 @@ dependencies {
     implementation 'com.nikhilpanju.recyclerviewenhanced:recyclerviewenhanced:1.1.0'
     implementation 'com.inthecheesefactory.thecheeselibrary:stated-fragment-support-v4:0.10.0'
     implementation 'com.google.code.gson:gson:2.8.2'
-    implementation 'com.squareup.okhttp3:okhttp:3.10.0'
+
     implementation 'com.aurelhubert:ahbottomnavigation:2.1.0'
     implementation 'com.mikepenz:iconics-core:3.0.3@aar'
     implementation 'com.mikepenz:iconics-views:3.0.3@aar'

@@ -2,6 +2,9 @@
     <string name="app_name">供水服务</string>
     <string name="copyright">&#064;copyright 2018 - 供水总公司</string>
 
+    <string name="loading_update">正在读取版本信息......</string>
+    <string name="loading_customer_info">正在读取用户信息......</string>
+
     <string name="login">登录</string>
     <string name="login_waitting">登陆中...请等待</string>
     <string name="verify_code">验证码</string>
@@ -10,6 +13,8 @@
     <string name="phone_required">请输入正确的电话号码</string>
     <string name="verify_code_required">需要验证码</string>
 
+    <string name="no_alipay">没有安装支付宝App</string>
+    <string name="no_weixin">没有安装微信App</string>
     <string name="logout">注销</string>
     <string name="drawer_open">打开</string>
     <string name="drawer_close">关闭</string>

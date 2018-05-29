@@ -18,6 +18,8 @@
     <color name="buttonTextColorDark">#FFF</color>
     <color name="buttonTextColorDisabledDark">#DDD</color>
     <color name="buttonDefaultColor">#7272f7</color>
+    <color name="buttonSuccessColorDark">#0d8b0d</color>
+    <color name="buttonSuccessColor">#0dbb0d</color>
 
     <color name="locationColor">#7073ac</color>
 

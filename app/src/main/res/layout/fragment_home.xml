@@ -155,11 +155,31 @@
                 android:paddingRight="24dp"
                 android:paddingTop="12dp">
 
+                <FrameLayout
+                    android:id="@+id/tooltip"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginEnd="8dp"
+                    android:background="@drawable/tooltip">
+
+                    <TextView
+                        android:id="@+id/isBillTextView"
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"
+                        android:gravity="center"
+                        android:text="有"
+                        android:textColor="@android:color/white"
+                        android:textSize="10dp"
+                        android:textStyle="bold" />
+                </FrameLayout>
+
                 <TextView
                     android:id="@+id/billPay"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_centerVertical="true"
+                    android:layout_toRightOf="@+id/tooltip"
                     android:text="欠费："
                     android:textColor="@android:color/black" />
 
@@ -226,7 +246,10 @@
 
                 <com.mikepenz.iconics.view.IconicsButton
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_height="@dimen/button_height"
+                    style="@style/Widget.AppCompat.Button"
+                    android:background="@drawable/button_default"
+                    android:textColor="@color/buttonTextColorDark"
                     android:text="{cmd_bank} 银行" />
             </LinearLayout>
 
@@ -249,14 +272,21 @@
                 <com.mikepenz.iconics.view.IconicsButton
                     android:id="@+id/weixinButton"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_height="@dimen/button_height"
+                    style="@style/Widget.AppCompat.Button"
+                    android:background="@drawable/button_success"
+                    android:textColor="@color/buttonTextColorDark"
                     android:text="微信" />
 
                 <com.mikepenz.iconics.view.IconicsButton
                     android:id="@+id/alipayButton"
+                    style="@style/Widget.AppCompat.Button"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="支付宝" />
+                    android:layout_height="@dimen/button_height"
+                    android:layout_marginStart="@dimen/marginLeft"
+                    android:background="@drawable/button_default"
+                    android:text="支付宝"
+                    android:textColor="@color/buttonTextColorDark" />
 
             </LinearLayout>
 
@@ -274,13 +304,17 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="32dp"
                 android:layout_marginTop="8dp"
-                android:orientation="horizontal">
+                android:background="@drawable/tooltip_normal"
+                android:orientation="horizontal"
+                android:paddingBottom="@dimen/marginTop"
+                android:paddingEnd="@dimen/paddingRight"
+                android:paddingStart="@dimen/paddingLeft"
+                android:paddingTop="@dimen/marginTop">
 
-                <com.mikepenz.iconics.view.IconicsButton
-                    android:id="@+id/jcButton"
+                <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="杰出便利店" />
+                    android:text="杰出便利店：您可以在附近的杰出缴纳水费" />
             </LinearLayout>
         </LinearLayout>
 

@@ -2,6 +2,9 @@ package com.bdwater.waterservice;
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.drawable.Drawable;
+import android.support.design.widget.CoordinatorLayout;
+import android.support.v4.content.ContextCompat;
 import android.support.v4.view.ViewPager;
 import android.os.Bundle;
 import android.support.v4.widget.DrawerLayout;
@@ -43,6 +46,8 @@ public class MainActivity extends BaseActivity implements RecyclerTouchListener.
     public static final int PAGE_SITE = 3;
     public static final int PAGE_NOTIFICATION = 4;
 
+    @BindView(R.id.coordinatorLayout)
+    CoordinatorLayout coordinatorLayout;
     @BindView(R.id.drawerLayout)
     DrawerLayout drawerLayout;
     @BindView(R.id.phoneTextView)
@@ -70,7 +75,11 @@ public class MainActivity extends BaseActivity implements RecyclerTouchListener.
         setContentView(R.layout.activity_main);
         ButterKnife.bind(this);
         setSwipeBackEnable(false);
+        CustomApplication.setMainActivity(this);
 
+        //Drawable drawable = ContextCompat.getDrawable(this, R.drawable.city);
+        //drawable.setAlpha(255);
+        toolbar.setBackgroundResource(R.drawable.city_bg);
         setSupportActionBar(toolbar);
         ActionBarDrawerToggle drawerToggle = new ActionBarDrawerToggle(this,
                 drawerLayout,
@@ -123,6 +132,7 @@ public class MainActivity extends BaseActivity implements RecyclerTouchListener.
         });
 
         adapter = new MainPagerAdapter(getSupportFragmentManager(), this);
+        adapter.setCount(4);
         // setOffscreenPageLimit means that the number of pages will be keep in memory
         // beyond this number the page will be created
         viewPager.setOffscreenPageLimit(3);
@@ -147,7 +157,9 @@ public class MainActivity extends BaseActivity implements RecyclerTouchListener.
             }
         });
     }
-
+    public View getCoordinatorLayout() {
+        return this.coordinatorLayout;
+    }
 
     private ViewPager.OnPageChangeListener pageChangeListener = new ViewPager.OnPageChangeListener() {
         @Override
